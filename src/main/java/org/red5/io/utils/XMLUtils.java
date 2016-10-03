@@ -125,6 +125,7 @@ public class XMLUtils {
 	public static String docToString2(Document domDoc) throws IOException {
 		try {
 			TransformerFactory transFact = TransformerFactory.newInstance();
+
 			//========================================================================//
 			// Fix HP Fortify Security Report.
 			// See https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Prevention_Cheat_Sheet
@@ -136,7 +137,9 @@ public class XMLUtils {
 			// trans.transform(xmlSource, result);
 
 			transFact.setFeature(XMLConstants.ACCESS_EXTERNAL_DTD, false);
+			transFact.setFeature(XMLConstants.ACCESS_EXTERNAL_STYLESHEET, false);
 			//=======================================================================//
+
 			Transformer trans = transFact.newTransformer();
 			trans.setOutputProperty(OutputKeys.INDENT, "no");
 			StringWriter sw = new StringWriter();
