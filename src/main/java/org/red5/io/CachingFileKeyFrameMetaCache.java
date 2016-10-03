@@ -56,8 +56,8 @@ public class CachingFileKeyFrameMetaCache extends FileKeyFrameMetaCache {
 
 	@Override
 	public KeyFrameMeta loadKeyFrameMeta(File file) {
-		rwLock.readLock().lock();
 		try {
+			rwLock.readLock().lock();
 			String canonicalPath = file.getCanonicalPath();
 			if (!inMemoryMetaCache.containsKey(canonicalPath)) {
 				try {
@@ -87,8 +87,8 @@ public class CachingFileKeyFrameMetaCache extends FileKeyFrameMetaCache {
 
 	@Override
 	public void removeKeyFrameMeta(File file) {
-		rwLock.writeLock().lock();
 		try {
+			rwLock.writeLock().lock();
 			String canonicalPath = file.getCanonicalPath();
 			inMemoryMetaCache.remove(canonicalPath);
 		} catch (IOException e) {
